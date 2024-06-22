@@ -1,4 +1,8 @@
 Flask==2.0.2
 gunicorn==20.1.0
 requests==2.26.0
-Werkzeug==2.0.3  # Add this line
+Werkzeug==2.0.3
+Jinja2>=3.0
+itsdangerous>=2.0
+click>=7.1.2
+tensorflow==2.8.0  # or the version you are using
