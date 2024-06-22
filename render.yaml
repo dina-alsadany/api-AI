@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: my-web-service
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
