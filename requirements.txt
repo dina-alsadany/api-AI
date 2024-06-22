@@ -6,3 +6,4 @@ Jinja2>=3.0
 itsdangerous>=2.0
 click>=7.1.2
 tensorflow==2.16.1  # or the version you are using
+Pillow==10.1.0
