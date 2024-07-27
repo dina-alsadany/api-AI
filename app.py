@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
@@ -6,6 +7,7 @@ import io
 import os
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all routes
 
 # Paths to the model directories
 xray_model_dir = 'model/xray'
@@ -59,13 +61,17 @@ categories_ct = [
     'squamous.cell.carcinoma'
 ]
 
+@app.route('/')
+def index():
+    return "Welcome to the X-ray and CT Image Prediction API!"
+
 @app.route('/xray/predict', methods=['POST'])
 def predict_xray():
-    return predict(xray_model, categories_xray, (224, 224))  # Adjust input shape if necessary
+    return predict(xray_model, categories_xray, (224, 224))
 
 @app.route('/ct/predict', methods=['POST'])
 def predict_ct():
-    return predict(ct_model, categories_ct, (224, 224))  # Adjust input shape if necessary
+    return predict(ct_model, categories_ct, (224, 224))
 
 def predict(model, categories, input_shape):
     try:
